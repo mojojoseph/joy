@@ -9,7 +9,7 @@ var joystick = new (require('joystick'))(0, 3500, 350);
 // first page
 var state = 1;
 
-joystick.on('button', e => {
+joystick.on('button', async e => {
   
   // init:true in the event is a "startup" event that
   // can be ignored
@@ -22,12 +22,11 @@ joystick.on('button', e => {
       await open(`file://${dir}/1.html`,
       {newinstance: false, app: {name: 'chromium-browser',arguments: ['--kiosk','--force-device-scale-factor=1.50']}});
 
-    })
+    }
 
-  }
 });
 
-joystick.on('axis', e => {
+joystick.on('axis', async e => {
   if (!e.init) {
     console.log(e);
 
